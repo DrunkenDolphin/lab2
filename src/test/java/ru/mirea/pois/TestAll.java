@@ -28,8 +28,8 @@ public class TestAll {
             InternalKnowledgeBase kBase = prepareKnowledgeBase(Arrays.asList(
                     new File("rules/calcCredit.drl")));
             KieSession kSession = kBase.newKieSession();
-            // typically we want to consider today but we may decide to schedule
-            // emails in the future or we may want to run tests using a different date
+
+
             LocalDate dayToConsider = LocalDate.now();
 
             List<Property> propertyList = Arrays.asList(new Property(PropertyType.REALTY, 130000),
@@ -67,9 +67,6 @@ public class TestAll {
 
             Client guarantor = new Client("Maria", 15000, propertyList, 3, "married", ClientType.GUARANTOR);
 
-
-            // typically we want to consider today but we may decide to schedule
-            // emails in the future or we may want to run tests using a different date
             LocalDate dayToConsider = LocalDate.now();
             loadDataIntoSession(kSession, dayToConsider, client, guarantor);
 

@@ -61,7 +61,7 @@ public class Main {
 
 
     public static void showSending(KieSession kieSession) {
-        log.info("Showing results");
+        System.out.println("Showing results");
         log.info("{}", kieSession);
     }
 
@@ -70,8 +70,7 @@ public class Main {
             InternalKnowledgeBase kBase = readKnoledgeBase(Arrays.asList(
                     new File("rules/calcCredit.drl")));
             KieSession kSession = kBase.newKieSession();
-            // typically we want to consider today but we may decide to schedule
-            // emails in the future or we may want to run tests using a different date
+
             LocalDate dayToConsider = LocalDate.now();
             loadDataIntoSession(kSession, dayToConsider);
 
