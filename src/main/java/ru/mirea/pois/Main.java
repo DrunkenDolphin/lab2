@@ -38,6 +38,7 @@ public class Main {
 
         kieSession.insert(client1);
 
+        kieSession.setGlobal("credit", new Credit());
     }
 
     private static InternalKnowledgeBase readKnoledgeBase(List<File> files) {
