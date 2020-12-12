@@ -1,0 +1,32 @@
+import ru.mirea.pois.data.Credit
+import  ru.mirea.pois.data.Client
+import java.time.LocalDate
+import ru.mirea.pois.data.CreditCalc
+
+global Credit credit
+
+dialect "java"
+rule "Start sequence"
+ when
+    client : Client(isMainClient(), isAllMatches(2000, 4, 20000));
+    guarantor : Client(!isMainClient());
+ then
+    CreditCalc $creditCalc = new CreditCalc(client, guarantor);
+    insert($creditCalc);
+end
+
+rule "Start calc"
+ when
+    creditCalc: CreditCalc();
+ then
+
+    credit.setClient(creditCalc.getMainClient());
+
+    credit.setClient(creditCalc.getGuarantor());
+
+    credit.setSum(creditCalc.calcSum());
+
+    credit.setPercent(creditCalc.calcPercent());
+
+    credit.setDueTime(LocalDate.now());
+end
