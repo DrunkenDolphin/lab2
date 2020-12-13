@@ -48,6 +48,9 @@ public class TestAll {
             Assert.assertEquals(285000, credit.getSum());
             Assert.assertEquals(LocalDate.now(), credit.getDueTime());
 
+            log.info("Процентнтая ставка = {}", credit.getPercent());
+            log.info("Сумма ипотеки = {}", credit.getSum());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
